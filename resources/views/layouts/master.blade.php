@@ -14,6 +14,7 @@
     <!-- css files -->
     @include('layouts.head-css')
     <!-- Styles -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
     @livewireStyles
 </head>
 
@@ -24,7 +25,7 @@
     @include('layouts.sidebar')
 
     <div class="main-content">
-        <div class="page-content dark:bg-zinc-700 min-h-screen">
+        <div class="min-h-screen page-content dark:bg-zinc-700">
             <div class="container-fluid px-[0.625rem]">
                 <!-- content -->
                 @yield('content')
@@ -37,9 +38,29 @@
     @include('layouts.rtl-ltr')
     <!-- script -->
     @include('layouts.vendor-scripts')
-      <!-- Scripts -->
+    <!-- Scripts -->
     @vite(['resources/js/app.js'])
     @livewireScripts
+
+    <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
+
+    <script>
+        var notyf = new Notyf({
+            duration: 3000,
+            position: {
+                x: 'right',
+                y: 'top',
+            },
+            dismissible: true
+        });
+    </script>
+    <script>
+        Livewire.on(
+            'success',
+            title => {
+                notyf.success('Post created!');
+            })
+    </script>
 </body>
 
 </html>

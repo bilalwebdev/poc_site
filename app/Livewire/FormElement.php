@@ -16,6 +16,10 @@ class FormElement extends Component
     {
         $api = new BackendApi();
         $res =  $api->post('form', ['name' => $this->name, 'username' => $this->username]);
+
+        $this->reset(['name', 'username']);
+
+        $this->dispatch('success', title: 'New post added.');
     }
     public function render()
     {
